@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas, Linyi ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Mountains+of+Christmas:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            /* 更加深邃浪漫的夜空背景 */
+            background: radial-gradient(circle at 50% 100%, #2b0a16 0%, #1a0509 40%, #090203 100%);
+            color: #fff;
+            font-family: 'Mountains of Christmas', cursive;
+            overflow: hidden; /* 防止滚动条出现 */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        /* ---------------- 粒子与背景层 ---------------- */
+        .snow-container, .magic-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .snowflake {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            filter: blur(1px);
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        /* 漂浮的节日元素 (拐杖、麋鹿等) */
+        .floater {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); }
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) scale(0.5); opacity: 0; }
+            20% { opacity: 0.7; }
+            80% { opacity: 0.7; }
+            100% { transform: translateY(-10vh) scale(1.2) rotate(20deg); opacity: 0; }
+        }
+
+        /* ---------------- 圣诞老人动画 ---------------- */
+        .santa-fly {
+            position: fixed;
+            top: 10%;
+            right: -200px;
+            font-size: 40px;
+            z-index: 2;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
+            animation: flyAcross 20s linear infinite;
+        }
+
+        @keyframes flyAcross {
+            0% { right: -200px; top: 10%; transform: rotate(5deg); }
+            25% { top: 15%; }
+            50% { top: 8%; }
+            100% { right: 110%; top: 12%; transform: rotate(-5deg); }
+        }
+
+        /* ---------------- 主卡片容器 ---------------- */
+        .card-container {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 50px rgba(255, 0, 50, 0.2);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            animation: breathe 4s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 0, 50, 0.2); }
+            50% { box-shadow: 0 0 60px rgba(255, 0, 50, 0.4); }
+        }
+
+        /* ---------------- CSS 霓虹圣诞树 ---------------- */
+        .neon-tree {
+            font-size: 80px;
+            margin: -20px 0 10px 0;
+            line-height: 1;
+            filter: drop-shadow(0 0 15px #2ecc71);
+            animation: treeGlow 2s infinite alternate;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .neon-tree:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes treeGlow {
+            from { filter: drop-shadow(0 0 5px #2ecc71); }
+            to { filter: drop-shadow(0 0 25px #2ecc71) drop-shadow(0 0 40px #ffd700); }
+        }
+
+        /* ---------------- 文字样式 ---------------- */
+        h1 {
+            font-size: 3rem;
+            margin: 10px 0;
+            background: linear-gradient(to right, #fff, #ffd700, #fff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff3366;
+            display: block;
+            margin: 10px 0 20px 0;
+            text-shadow: 0 0 15px rgba(255, 51, 102, 0.6);
+        }
+
+        .love-note {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ddd;
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid #ff3366;
+        }
+
+        .highlight {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        /* ---------------- 鼠标跟随特效 ---------------- */
+        .cursor-trail {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #fff, transparent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: fadeOut 1s linear forwards;
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; transform: scale(0); }
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .name { font-size: 3rem; }
+            .card-container { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 背景音乐提示：很多浏览器禁止自动播放，你可以发给她时让她点一下屏幕 -->
+    
+    <!-- 1. 圣诞老人 -->
+    <div class="santa-fly">🎅🦌🦌💨</div>
+
+    <!-- 2. 粒子容器 -->
+    <div class="snow-container" id="snowContainer"></div>
+    <div class="magic-elements" id="magicContainer"></div>
+
+    <!-- 3. 主卡片 -->
+    <div class="card-container">
+        <!-- 装饰性顶部 -->
+        <div style="font-size: 24px; margin-bottom: 10px;">✨ 🎁 ✨</div>
+
+        <!-- 霓虹圣诞树 (Emoji 组合，带发光特效) -->
+        <div class="neon-tree" onclick="createBurst(event)">🎄</div>
+
+        <h1>Merry Christmas</h1>
+        
+        <!-- !! 修改名字区域 !! -->
+        <span class="name">My Linyi</span>
+
+        <div class="love-note">
+            <p>
+                Even though we are always in summer,<br>
+                I wanted to give you a <span class="highlight">Winter Wonderland</span>.<br>
+                <br>
+                May the magic of Christmas fill your heart,<br>
+                just like you fill mine every single day.<br>
+                <br>
+                I Love You ❤️
+            </p>
+        </div>
+
+        <div style="margin-top: 30px; font-size: 14px; color: #aaa;">
+            2025 · Forever Yours
+        </div>
+    </div>
+
+    <script>
+        // 1. 下雪特效
+        function createSnow() {
+            const container = document.getElementById('snowContainer');
+            const count = 50;
+            for(let i=0; i<count; i++) {
+                const snow = document.createElement('div');
+                snow.className = 'snowflake';
+                snow.style.left = Math.random() * 100 + '%';
+                snow.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                snow.style.opacity = Math.random();
+                const size = Math.random() * 3 + 2;
+                snow.style.width = size + 'px';
+                snow.style.height = size + 'px';
+                snow.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(snow);
+            }
+        }
+
+        // 2. 漂浮的节日元素 (麋鹿、拐杖、爱心等)
+        function createMagic() {
+            const container = document.getElementById('magicContainer');
+            const icons = ['🦌', '🍬', '🎁', '❄️', '⭐', '🔔', '🍪'];
+            const count = 20; // 数量
+
+            for(let i=0; i<count; i++) {
+                const floater = document.createElement('div');
+                floater.className = 'floater';
+                floater.textContent = icons[Math.floor(Math.random() * icons.length)];
+                floater.style.left = Math.random() * 100 + '%';
+                floater.style.animationDuration = (Math.random() * 10 + 10) + 's'; // 飘得很慢
+                floater.style.animationDelay = Math.random() * 10 + 's';
+                container.appendChild(floater);
+            }
+        }
+
+        // 3. 鼠标跟随星光
+        document.addEventListener('mousemove', function(e) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+            document.body.appendChild(trail);
+            
+            setTimeout(() => {
+                trail.remove();
+            }, 1000);
+        });
+
+        // 4. 点击圣诞树爆炸特效
+        function createBurst(e) {
+            // 简单的点击反馈
+            const tree = e.target;
+            tree.style.transform = "scale(1.4)";
+            setTimeout(() => tree.style.transform = "scale(1.1)", 200);
+            
+            // 生成额外的爱心
+            for(let i=0; i<5; i++) {
+                const heart = document.createElement('div');
+                heart.innerText = '❤️';
+                heart.style.position = 'absolute';
+                heart.style.left = (e.clientX + (Math.random()*100 - 50)) + 'px';
+                heart.style.top = (e.clientY + (Math.random()*100 - 50)) + 'px';
+                heart.style.transition = 'all 1s ease';
+                heart.style.opacity = '1';
+                heart.style.fontSize = '20px';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.style.transform = 'translateY(-100px)';
+                    heart.style.opacity = '0';
+                }, 50);
+                setTimeout(() => heart.remove(), 1000);
+            }
+        }
+
+        // 初始化
+        createSnow();
+        createMagic();
+
+    </script>
+</body>
+</html>
